@@ -1,0 +1,315 @@
+diff --git a/index.html b/index.html
+index 2d4d29b1173157c8a213c90aa7d488cf4f10ad78..70679eef04a19ba7760e990cb1e80126224cc0a3 100644
+--- a/index.html
++++ b/index.html
+@@ -27,50 +27,51 @@
+   .logo-badge { width:48px; height:48px; background:linear-gradient(135deg,var(--accent),#6366f1); border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'DM Serif Display',serif; font-size:22px; color:white; box-shadow:0 0 20px rgba(59,130,246,.4); }
+   .header-title { font-family:'DM Serif Display',serif; font-size:24px; }
+   .header-sub { font-size:13px; color:var(--muted); margin-top:2px; }
+   .header-right { display:flex; align-items:center; gap:12px; }
+   .status-badge { display:flex; align-items:center; gap:6px; background:rgba(16,185,129,.1); border:1px solid rgba(16,185,129,.3); border-radius:20px; padding:6px 14px; font-size:12px; color:var(--accent2); font-family:'DM Mono',monospace; }
+   .status-dot { width:6px; height:6px; border-radius:50%; background:var(--accent2); animation:pulse 2s infinite; }
+   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+   .sync-btn { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:8px 16px; border-radius:8px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .2s; display:flex; align-items:center; gap:6px; }
+   .sync-btn:hover { background:var(--border); border-color:var(--accent); color:var(--accent); }
+   .last-updated { font-size:11px; color:var(--muted); font-family:'DM Mono',monospace; }
+ 
+   /* MAIN */
+   main { padding:32px 24px; position:relative; z-index:1; }
+ 
+   /* CONFIG PANEL */
+   .config-panel { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; margin-bottom:24px; display:none; }  .config-panel.open { display:block; }  .settings-btn { background:var(--surface2); border:1px solid var(--border); color:var(--muted); padding:8px 14px; border-radius:8px; font-size:13px; cursor:pointer; font-family:"DM Sans",sans-serif; transition:all .2s; display:flex; align-items:center; gap:6px; }  .settings-btn:hover { border-color:var(--accent); color:var(--accent); }
+   .config-title { font-size:14px; font-weight:600; margin-bottom:16px; }
+   .config-item label { display:block; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+   .config-item input { width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:10px 14px; color:var(--text); font-size:13px; font-family:'DM Mono',monospace; outline:none; transition:border-color .2s; }
+   .config-item input:focus { border-color:var(--accent); }
+   .config-actions { display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; }
+   .btn-primary { background:var(--accent); color:white; border:none; padding:10px 20px; border-radius:8px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; transition:all .2s; }
+   .btn-primary:hover { background:#2563eb; box-shadow:0 4px 12px rgba(59,130,246,.4); }
+   .btn-secondary { background:transparent; color:var(--muted); border:1px solid var(--border); padding:10px 20px; border-radius:8px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .2s; }
+   .btn-secondary:hover { color:var(--text); border-color:var(--muted); }
++  .link-hint { font-size:12px; color:var(--muted); margin-top:10px; }
+   .info-box { background:rgba(59,130,246,.05); border:1px solid rgba(59,130,246,.2); border-radius:10px; padding:14px 16px; font-size:12px; color:var(--muted); line-height:1.7; margin-top:16px; }
+   .info-box strong { color:var(--accent); }
+   .code-block { background:#0a0f1e; border:1px solid #1e2d47; border-radius:8px; padding:12px; margin:8px 0; font-family:'DM Mono',monospace; font-size:11px; color:#10b981; white-space:pre; overflow-x:auto; line-height:1.6; }
+ 
+   /* ERROR / LOADING */
+   #error-msg { display:none; background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.3); border-radius:10px; padding:14px 16px; font-size:13px; color:#fca5a5; margin-bottom:16px; }
+   #loading { display:none; text-align:center; padding:40px; color:var(--muted); font-size:14px; }
+ 
+   /* KPI CARDS */
+   .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:32px; }
+   .kpi-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s; }
+   .kpi-card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,.3); }
+   .kpi-card::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-accent,var(--accent)); }
+   .kpi-label { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:12px; }
+   .kpi-value { font-family:'DM Serif Display',serif; font-size:32px; line-height:1; }
+   .kpi-sub { font-size:12px; color:var(--muted); margin-top:8px; font-family:'DM Mono',monospace; }
+   .kpi-icon { position:absolute; top:20px; right:20px; font-size:20px; opacity:.4; }
+ 
+   /* CHARTS */
+   .charts-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+   @media(max-width:768px){ .charts-row{grid-template-columns:1fr;} }
+   .chart-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; }
+   .chart-title { font-size:14px; font-weight:600; margin-bottom:20px; }
+   .donut-wrap { display:flex; align-items:center; gap:24px; }
+   .donut-legend { display:flex; flex-direction:column; gap:12px; }
+@@ -146,52 +147,54 @@
+     <div class="logo-badge">A</div>
+     <div>
+       <div class="header-title">Avanse Funding Tracker</div>
+       <div class="header-sub">Partner Dashboard · Live Data</div>
+     </div>
+   </div>
+   <div class="header-right">
+     <div class="status-badge"><div class="status-dot"></div> Live</div>
+     <button onclick="toggleConfig()" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-family:DM Sans,sans-serif;transition:all .2s">⚙ Settings</button><button class="sync-btn" onclick="loadData()">↻ Sync Data</button>
+     <span class="last-updated" id="last-updated">—</span>
+   </div>
+ </header>
+ 
+ <main>
+ <div class="container">
+ 
+   <!-- CONFIG -->
+   <div class="config-panel" id="config-panel">
+     <div class="config-title">⚙️ Google Sheet Connection</div>
+     <div class="config-item">
+       <label>Apps Script Web App URL</label>
+       <input type="text" id="script-url" placeholder="https://script.google.com/macros/s/…/exec">
+     </div>
+     <div class="config-actions">
+       <button class="btn-primary" onclick="loadData()">Connect &amp; Load Live Data</button>
++      <button class="btn-secondary" onclick="copyTeamLink()">Copy Team Link</button>
+       <button class="btn-secondary" onclick="loadSampleData()">Load Sample Data</button>
+     </div>
++    <div class="link-hint" id="link-hint">Tip: Configure once, then share the generated team link so others auto-load live data.</div>
+     <div class="info-box" id="setup-instructions">
+       <strong>📋 Setup instructions (one time, ~3 minutes):</strong><br><br>
+       <strong>Step 1:</strong> In your Google Sheet → click <strong>Extensions → Apps Script</strong><br><br>
+       <strong>Step 2:</strong> Delete any existing code and paste this:<br>
+       <div class="code-block">function doGet(e) {
+   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+   var data = sheet.getDataRange().getValues();
+   var headers = data[0];
+   var rows = data.slice(1).map(function(row) {
+     var obj = {};
+     headers.forEach(function(h, i) { obj[String(h).trim()] = row[i]; });
+     return obj;
+   });
+   var cb = e.parameter.callback;
+   var json = JSON.stringify(rows);
+   var out = cb
+     ? ContentService.createTextOutput(cb+'('+json+')')
+         .setMimeType(ContentService.MimeType.JAVASCRIPT)
+     : ContentService.createTextOutput(json)
+         .setMimeType(ContentService.MimeType.JSON);
+   return out;
+ }</div>
+       <strong>Step 3:</strong> Click <strong>Deploy → New deployment</strong><br>
+       &nbsp;• Type → <strong>Web app</strong><br>
+       &nbsp;• Execute as → <strong>Me</strong><br>
+@@ -271,50 +274,51 @@
+     <button class="filter-btn" onclick="setFilter('unlien',this)">Unlien Only</button>
+     <button class="filter-btn" onclick="setFilter('balance',this)">Has Balance</button>
+   </div>
+   <div class="table-wrap">
+     <table>
+       <thead><tr>
+         <th>Student</th><th>Country</th><th>Lien Funded</th><th>Unlien Funded</th>
+         <th>Lien Balance</th><th>Unlien Balance</th><th>% Funded</th><th>Loan Letter</th>
+       </tr></thead>
+       <tbody id="table-body">
+         <tr><td colspan="8" style="text-align:center;color:var(--muted);padding:40px">Connect your sheet or load sample data to begin</td></tr>
+       </tbody>
+     </table>
+   </div>
+ 
+ </div>
+ </main>
+ 
+ <script>
+ // ─── STATE ─────────────────────────────────────────────────────────────────────
+ const COLORS = ['#6366f1','#10b981','#f59e0b','#3b82f6','#ec4899','#14b8a6'];
+ let allData = [];
+ let activeFilter = 'all';
+ let dateFrom = null;
+ let dateTo = null;
++let autoRefreshTimer = null;
+ 
+ // ─── SAMPLE DATA ───────────────────────────────────────────────────────────────
+ const SAMPLE = [
+   {user_id:'user000658',name:'Hiren Patel',country:'',email:'hp03978@gmail.com',created_at:'12/3/2025',lien:0,unlien:4800,date_lien:'',date_unlien:'12/22/2025',bal_lien:0,bal_unlien:0,pct:'',notes:'',doc:''},
+   {user_id:'user342432',name:'Aryan Kunwar',country:'US',email:'aryankunwarr@gmail.com',created_at:'12/29/2025',lien:96123.13,unlien:0,date_lien:'1/30/2026',date_unlien:'',bal_lien:0.75,bal_unlien:0,pct:'',notes:'',doc:'https://drive.google.com/file/d/1xr86lfJakjNu5q0jex3RLXoIXBYERB77/view'},
+   {user_id:'user376886',name:'Amith Kumar Yadav Komal',country:'US',email:'amith.ai.71965@gmail.com',created_at:'11/27/2025',lien:98490,unlien:4347.30,date_lien:'12/23/2025',date_unlien:'1/22/2026',bal_lien:0,bal_unlien:2266.30,pct:'',notes:'',doc:'https://drive.google.com/file/d/1781GvNcLIFsY5PQ3eXqyOt-uIpJpBIqH/view'},
+   {user_id:'user510211',name:'Sai Teja Chalike',country:'UK',email:'saitejachalike5@gmail.com',created_at:'11/27/2025',lien:0,unlien:34484,date_lien:'',date_unlien:'12/23/2025',bal_lien:0,bal_unlien:151.92,pct:'',notes:'',doc:'https://drive.google.com/file/d/1flCyTHCHv2kl22EMjqCwe_Lg6cHwMZp6/view'},
+   {user_id:'user542752',name:'Prasad Pawar',country:'US',email:'prasadpawar0093@gmail.com',created_at:'11/27/2025',lien:0,unlien:19290,date_lien:'',date_unlien:'12/4/2025',bal_lien:0,bal_unlien:3121.03,pct:'',notes:'',doc:'https://drive.google.com/file/d/1flCyTHCHv2kl22EMjqCwe_Lg6cHwMZp6/view'},
+   {user_id:'user576152',name:'Manjyot Padam',country:'US',email:'manjyotsingh13@gmail.com',created_at:'12/8/2025',lien:15231,unlien:0,date_lien:'12/19/2025',date_unlien:'',bal_lien:0,bal_unlien:254.92,pct:'',notes:'',doc:'https://drive.google.com/file/d/1dukSEemFsV27rZGsvJxizu9P6Ksf9M5d/view'},
+ ];
+ 
+ // ─── DATA HELPERS ──────────────────────────────────────────────────────────────
+ const norm = s => String(s||'').toLowerCase().trim();
+ const findKey = (obj, kw) => Object.keys(obj).find(k => norm(k).includes(norm(kw))) || null;
+ const pm = v => { if(!v && v!==0) return 0; if(typeof v==='number') return v; return parseFloat(String(v).replace(/[$,\s]/g,''))||0; };
+ 
+ function processRows(rows) {
+   if (!Array.isArray(rows) || rows.length === 0) throw new Error('No data rows returned');
+   const s = rows[0];
+   const kU=findKey(s,'user_id'), kN=findKey(s,'name'), kC=findKey(s,'country'), kE=findKey(s,'email');
+   const kL=findKey(s,'lien funding'), kUL=findKey(s,'unlien funding');
+   const kDL=findKey(s,'date funded lien'), kDUL=findKey(s,'date funded unlien');
+   const kBL=findKey(s,'current lien balance'), kBUL=findKey(s,'current unlien balance');
+   const kP=findKey(s,'percent'), kNotes=findKey(s,'notes'), kDoc=findKey(s,'loan sanction');
+ 
+@@ -322,86 +326,106 @@ function processRows(rows) {
+     .filter(r => kN && r[kN] && String(r[kN]).trim())
+     .map(r => ({
+       user_id:     String(r[kU]   ||''),
+       name:        String(r[kN]   ||''),
+       country:     String(r[kC]   ||''),
+       email:       String(r[kE]   ||''),
+       lien:        pm(r[kL]),
+       unlien:      pm(r[kUL]),
+       date_lien:   r[kDL] || '',
+       date_unlien: r[kDUL] || '',
+       bal_lien:    pm(r[kBL]),
+       bal_unlien:  pm(r[kBUL]),
+       pct:         String(r[kP]   ||''),
+       notes:       String(r[kNotes]||''),
+       doc:         String(r[kDoc] ||''),
+     }));
+ 
+   document.getElementById('loading').style.display = 'none';
+   document.getElementById('last-updated').textContent = '✓ Live · ' + new Date().toLocaleTimeString();
+   document.getElementById('setup-instructions').style.display = 'none';
+   showError('');
+   render();
+ }
+ 
+ // ─── LOADER (JSONP — bypasses CORS on GitHub Pages) ────────────────────────────
+-function loadData() {
+-  const url = document.getElementById('script-url').value.trim();
++function loadData(customUrl = null) {
++  const url = (customUrl || document.getElementById('script-url').value).trim();
+   if (!url) { showError('Please paste your Apps Script Web App URL first.'); document.getElementById('config-panel').classList.add('open'); return; }
+   try { localStorage.setItem('avanse_url', url); } catch(e) {}
++  document.getElementById('script-url').value = url;
+ 
+   showError('');
+   document.getElementById('loading').style.display = 'block';
+ 
+   // Remove old JSONP tag
+   const old = document.getElementById('_jsonp');
+   if (old) old.remove();
+ 
+   // Timeout
+   const timer = setTimeout(() => {
+     document.getElementById('loading').style.display = 'none';
+     showError('❌ Connection timed out. Make sure "Who has access" is set to Anyone in your Apps Script deployment.');
+   }, 12000);
+ 
+   // Global callback the script will call
+   window.__avanseData = function(rows) {
+     clearTimeout(timer);
+     try { processRows(rows); }
+     catch(e) { document.getElementById('loading').style.display='none'; showError('❌ '+e.message); }
+     delete window.__avanseData;
+   };
+ 
+   // Inject script tag — no CORS restrictions
+   const tag = document.createElement('script');
+   tag.id = '_jsonp';
+   tag.src = url + (url.includes('?') ? '&' : '?') + 'callback=__avanseData';
+   tag.onerror = () => {
+     clearTimeout(timer);
+     document.getElementById('loading').style.display = 'none';
+     showError('❌ Script load error. Double-check your Apps Script URL and that access is set to Anyone.');
+   };
+   document.head.appendChild(tag);
++
++  if (autoRefreshTimer) clearInterval(autoRefreshTimer);
++  autoRefreshTimer = setInterval(() => loadData(url), 300000);
++}
++
++async function copyTeamLink() {
++  const url = document.getElementById('script-url').value.trim();
++  if (!url) {
++    showError('Please add your Apps Script URL before generating a team link.');
++    return;
++  }
++  const teamUrl = window.location.origin + window.location.pathname + '?source=' + encodeURIComponent(url);
++  try {
++    await navigator.clipboard.writeText(teamUrl);
++    document.getElementById('link-hint').textContent = '✅ Team link copied. Share it and teammates will load live data automatically.';
++    showError('');
++  } catch (e) {
++    document.getElementById('link-hint').textContent = '⚠️ Could not copy automatically. Manually share: ' + teamUrl;
++  }
+ }
+ 
+ function loadSampleData() {
+   allData = SAMPLE;
+   document.getElementById('last-updated').textContent = 'Sample data loaded';
+   render();
+ }
+ 
+ function showError(msg) {
+   const el = document.getElementById('error-msg');
+   el.textContent = msg;
+   el.style.display = msg ? 'block' : 'none';
+ }
+ 
+ // ─── FORMATTING ────────────────────────────────────────────────────────────────
+ const fmt = n => n===0 ? '$0' : n>=1000 ? '$'+(n/1000).toFixed(1)+'K' : '$'+n.toFixed(2);
+ const fmtFull = n => '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const initials = name => name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+ 
+ // ─── FILTERING ─────────────────────────────────────────────────────────────────
+ function parseDate(str) {
+   if (!str && str !== 0) return null;
+   // Google Sheets sends Date objects via Apps Script
+   if (typeof str === 'object' && str !== null && typeof str.getTime === 'function') {
+     return isNaN(str.getTime()) ? null : str;
+@@ -548,30 +572,41 @@ function onCustomDate() {
+   dateTo=tv?new Date(tv+'T23:59:59'):null;
+   document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+   const tag=document.getElementById('active-date-tag');
+   if (fv||tv) { tag.textContent=(fv||'…')+' → '+(tv||'…'); tag.style.display='inline-flex'; }
+   else tag.style.display='none';
+   render();
+ }
+ 
+ function clearDates() {
+   dateFrom=null; dateTo=null;
+   document.getElementById('date-from').value='';
+   document.getElementById('date-to').value='';
+   document.querySelectorAll('.preset-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+   document.getElementById('active-date-tag').style.display='none';
+   render();
+ }
+ 
+ function setFilter(f, btn) {
+   activeFilter=f;
+   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+   btn.classList.add('active');
+   render();
+ }
+ 
+ function toggleConfig() { document.getElementById('config-panel').classList.toggle('open'); }
++const params = new URLSearchParams(window.location.search);
++const _shared = params.get('source');
+ const _saved = localStorage.getItem('avanse_url');
+-if (_saved) { document.getElementById('script-url').value = _saved; loadData(); } else { loadSampleData(); }
++if (_shared) {
++  document.getElementById('script-url').value = _shared;
++  document.getElementById('link-hint').textContent = 'Loaded from shared team link. Live sync is enabled every 5 minutes.';
++  loadData(_shared);
++} else if (_saved) {
++  document.getElementById('script-url').value = _saved;
++  loadData(_saved);
++} else {
++  loadSampleData();
++}
+ </script>
+ </body>
+ </html>
